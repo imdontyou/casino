@@ -15,7 +15,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start; /* Изменено для лучшего расположения */
             min-height: 100vh;
             margin: 0;
             overflow: hidden;
@@ -23,15 +23,16 @@
             background-image: url('casino-background.jpg');
             background-size: cover;
             background-position: center;
+            padding: 10px; /* Добавлено для отступов */
         }
         #ton-connect {
-            margin-bottom: 20px;
+            margin-bottom: 10px; /* Уменьшен отступ */
         }
         button {
             background: linear-gradient(45deg, #ffd700, #ff8c00);
             color: #0a0a0a;
-            font-size: 24px;
-            padding: 10px 20px;
+            font-size: 18px; /* Уменьшен размер шрифта */
+            padding: 8px 16px; /* Уменьшен padding */
             border: none;
             border-radius: 50px;
             cursor: pointer;
@@ -45,20 +46,20 @@
             box-shadow: 0 0 25px rgba(255, 215, 0, 0.9);
         }
         .claim-button, .play-button {
-            margin-top: 20px;
+            margin-top: 10px; /* Уменьшен отступ */
         }
         #wallet-info, #game-info {
-            margin-top: 20px;
-            font-size: 18px;
+            margin-top: 10px; /* Уменьшен отступ */
+            font-size: 14px; /* Уменьшен размер шрифта */
             font-weight: bold;
             color: #ffd700;
             text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
         }
         input {
-            font-size: 16px;
-            padding: 10px;
-            width: 150px;
-            margin: 10px 0;
+            font-size: 14px; /* Уменьшен размер шрифта */
+            padding: 8px; /* Уменьшен padding */
+            width: 120px; /* Уменьшена ширина */
+            margin: 5px 0; /* Уменьшен отступ */
             text-align: center;
             border: 2px solid #ffd700;
             border-radius: 5px;
@@ -68,13 +69,13 @@
         }
         .game-container {
             width: 90%; /* Занимает 90% ширины экрана */
-            max-width: 300px; /* Максимальная ширина */
-            aspect-ratio: 1 / 1; /* Сохраняем пропорции 1:1 */
+            max-width: 250px; /* Уменьшена максимальная ширина */
+            aspect-ratio: 1 / 1; /* Сохраняем пропорции */
             position: relative;
             overflow: hidden;
             background-color: black;
             border-radius: 10px;
-            margin-top: 20px;
+            margin-top: 10px; /* Уменьшен отступ */
             background-image: url('logo2.png');
             background-size: cover;
             background-position: center;
@@ -121,20 +122,20 @@
             pointer-events: none;
         }
         #greeting {
-            font-size: 8vw; /* Адаптивный размер шрифта */
+            font-size: 6vw; /* Уменьшен размер шрифта */
             font-family: 'Cinzel Decorative', cursive;
             color: #ffd700;
             text-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
-            margin-bottom: 10px;
+            margin-bottom: 5px; /* Уменьшен отступ */
             text-transform: uppercase;
             text-align: center;
             white-space: nowrap; /* Текст в одну строку */
         }
         #subtitle {
-            font-size: 4vw; /* Адаптивный размер шрифта */
+            font-size: 3vw; /* Уменьшен размер шрифта */
             color: #ffd700;
             text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
-            margin-bottom: 20px;
+            margin-bottom: 10px; /* Уменьшен отступ */
             text-align: center;
             font-family: 'Roboto', sans-serif;
             opacity: 0.9;
@@ -184,30 +185,30 @@
         /* Анимация логотипов TON */
         .ton-logo {
             position: absolute;
-            width: 70px;
-            height: 70px;
+            width: 50px; /* Уменьшен размер логотипа */
+            height: 50px;
             opacity: 0.5;
             animation: rise 10s linear infinite;
-            bottom: -70px;
+            bottom: -50px;
         }
         @keyframes rise {
             0% { transform: translateY(0); }
-            100% { transform: translateY(calc(-100vh - 70px)); }
+            100% { transform: translateY(calc(-100vh - 50px)); }
         }
         /* Блок с выигрышами */
         #wins-container {
-            margin-top: 10px;
-            font-size: 4vw; /* Адаптивный размер шрифта */
+            margin-top: 5px; /* Уменьшен отступ */
+            font-size: 3vw; /* Уменьшен размер шрифта */
             color: #ffd700;
             text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
             text-align: center;
             font-family: 'Roboto', sans-serif;
             opacity: 0.9;
-            height: 30px;
+            height: 20px; /* Уменьшена высота */
             overflow: hidden;
         }
         .win-message {
-            margin: 5px 0;
+            margin: 2px 0; /* Уменьшен отступ */
             animation: fadeIn 1s ease-in-out;
         }
         @keyframes fadeIn {
@@ -218,25 +219,25 @@
         /* Медиа-запросы для мобильных устройств */
         @media (max-width: 768px) {
             #greeting {
-                font-size: 10vw; /* Увеличиваем шрифт для мобильных */
+                font-size: 7vw; /* Уменьшен размер шрифта */
             }
             #subtitle {
-                font-size: 5vw; /* Увеличиваем шрифт для мобильных */
+                font-size: 3.5vw; /* Уменьшен размер шрифта */
             }
             .game-container {
                 width: 90%; /* Занимает 90% ширины экрана */
-                max-width: 300px; /* Максимальная ширина */
+                max-width: 250px; /* Уменьшена максимальная ширина */
             }
             button {
-                font-size: 5vw; /* Адаптивный размер кнопок */
-                padding: 10px 15px;
+                font-size: 4vw; /* Уменьшен размер кнопок */
+                padding: 6px 12px;
             }
             input {
                 width: 80%; /* Ширина поля ввода */
-                font-size: 4vw; /* Адаптивный размер шрифта */
+                font-size: 3.5vw; /* Уменьшен размер шрифта */
             }
             #wallet-info, #game-info {
-                font-size: 4vw; /* Адаптивный размер шрифта */
+                font-size: 3.5vw; /* Уменьшен размер шрифта */
             }
         }
     </style>
