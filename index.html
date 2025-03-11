@@ -16,13 +16,15 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 100vh;
+            min-height: 100vh;
             margin: 0;
             overflow: hidden;
             position: relative;
             background-image: url('casino-background.jpg');
             background-size: cover;
             background-position: center;
+            padding: 20px; /* Добавляем отступы для мобильных устройств */
+            box-sizing: border-box; /* Учитываем padding в ширине */
         }
         #ton-connect {
             margin-bottom: 20px;
@@ -39,6 +41,7 @@
             font-family: 'Cinzel Decorative', cursive;
             text-transform: uppercase;
             box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+            margin: 10px 0; /* Добавляем отступы для кнопок */
         }
         button:hover {
             transform: scale(1.05);
@@ -53,6 +56,7 @@
             font-weight: bold;
             color: #ffd700;
             text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+            text-align: center; /* Центрируем текст */
         }
         input {
             font-size: 16px;
@@ -67,7 +71,8 @@
             font-family: 'Roboto', sans-serif;
         }
         .game-container {
-            width: 300px;
+            width: 90%; /* Уменьшаем ширину для мобильных устройств */
+            max-width: 300px; /* Ограничиваем максимальную ширину */
             height: 300px;
             position: relative;
             overflow: hidden;
@@ -120,21 +125,23 @@
             pointer-events: none;
         }
         #greeting {
-            font-size: 48px;
+            font-size: 36px; /* Уменьшаем размер шрифта для мобильных устройств */
             font-family: 'Cinzel Decorative', cursive;
             color: #ffd700;
             text-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
             margin-bottom: 10px;
             text-transform: uppercase;
+            text-align: center; /* Центрируем текст */
         }
         #subtitle {
-            font-size: 16px;
+            font-size: 14px; /* Уменьшаем размер шрифта для мобильных устройств */
             color: #ffd700;
             text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
             margin-bottom: 20px;
             text-align: center;
             font-family: 'Roboto', sans-serif;
             opacity: 0.9;
+            padding: 0 10px; /* Добавляем отступы по бокам */
         }
         /* Анимация неонового свечения */
         @keyframes neon-glow {
@@ -181,26 +188,26 @@
         /* Анимация логотипов TON */
         .ton-logo {
             position: absolute;
-            width: 70px;
-            height: 70px;
+            width: 50px; /* Уменьшаем размер логотипов для мобильных устройств */
+            height: 50px;
             opacity: 0.5;
             animation: rise 10s linear infinite;
-            bottom: -70px; /* Начинаем движение с самого низа */
+            bottom: -50px;
         }
         @keyframes rise {
             0% { transform: translateY(0); }
-            100% { transform: translateY(calc(-100vh - 70px)); } /* Поднимаем до самого верха */
+            100% { transform: translateY(calc(-100vh - 50px)); }
         }
         /* Блок с выигрышами */
         #wins-container {
             margin-top: 10px;
-            font-size: 18px;
+            font-size: 16px; /* Уменьшаем размер шрифта для мобильных устройств */
             color: #ffd700;
             text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
             text-align: center;
             font-family: 'Roboto', sans-serif;
             opacity: 0.9;
-            height: 30px; /* Фиксированная высота для одного сообщения */
+            height: 30px;
             overflow: hidden;
         }
         .win-message {
@@ -210,6 +217,27 @@
         @keyframes fadeIn {
             0% { opacity: 0; }
             100% { opacity: 1; }
+        }
+
+        /* Медиа-запросы для мобильных устройств */
+        @media (max-width: 600px) {
+            #greeting {
+                font-size: 28px; /* Еще меньше размер шрифта для очень маленьких экранов */
+            }
+            #subtitle {
+                font-size: 12px;
+            }
+            .game-container {
+                height: 250px; /* Уменьшаем высоту игрового поля */
+            }
+            .rocket {
+                width: 70px; /* Уменьшаем размер ракеты */
+                height: 70px;
+            }
+            button {
+                font-size: 20px; /* Уменьшаем размер шрифта кнопок */
+                padding: 8px 16px;
+            }
         }
     </style>
 </head>
