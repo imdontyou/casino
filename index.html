@@ -15,7 +15,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: flex-start; /* Изменено для лучшего расположения */
+            justify-content: flex-start;
             min-height: 100vh;
             margin: 0;
             overflow: hidden;
@@ -23,16 +23,16 @@
             background-image: url('casino-background.jpg');
             background-size: cover;
             background-position: center;
-            padding: 10px; /* Добавлено для отступов */
+            padding: 10px;
         }
         #ton-connect {
-            margin-bottom: 10px; /* Уменьшен отступ */
+            margin-bottom: 10px;
         }
         button {
             background: linear-gradient(45deg, #ffd700, #ff8c00);
             color: #0a0a0a;
-            font-size: 18px; /* Уменьшен размер шрифта */
-            padding: 8px 16px; /* Уменьшен padding */
+            font-size: 18px;
+            padding: 8px 16px;
             border: none;
             border-radius: 50px;
             cursor: pointer;
@@ -46,20 +46,20 @@
             box-shadow: 0 0 25px rgba(255, 215, 0, 0.9);
         }
         .claim-button, .play-button {
-            margin-top: 10px; /* Уменьшен отступ */
+            margin-top: 10px;
         }
         #wallet-info, #game-info {
-            margin-top: 10px; /* Уменьшен отступ */
-            font-size: 14px; /* Уменьшен размер шрифта */
+            margin-top: 10px;
+            font-size: 14px;
             font-weight: bold;
             color: #ffd700;
             text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
         }
         input {
-            font-size: 14px; /* Уменьшен размер шрифта */
-            padding: 8px; /* Уменьшен padding */
-            width: 120px; /* Уменьшена ширина */
-            margin: 5px 0; /* Уменьшен отступ */
+            font-size: 14px;
+            padding: 8px;
+            width: 120px;
+            margin: 5px 0;
             text-align: center;
             border: 2px solid #ffd700;
             border-radius: 5px;
@@ -68,14 +68,14 @@
             font-family: 'Roboto', sans-serif;
         }
         .game-container {
-            width: 90%; /* Занимает 90% ширины экрана */
-            max-width: 250px; /* Уменьшена максимальная ширина */
-            aspect-ratio: 1 / 1; /* Сохраняем пропорции */
+            width: 90%;
+            max-width: 250px;
+            aspect-ratio: 1 / 1;
             position: relative;
             overflow: hidden;
             background-color: black;
             border-radius: 10px;
-            margin-top: 10px; /* Уменьшен отступ */
+            margin-top: 10px;
             background-image: url('logo2.png');
             background-size: cover;
             background-position: center;
@@ -83,7 +83,7 @@
             border: 2px solid #ffd700;
         }
         .rocket {
-            width: 25%; /* Размер ракеты относительно контейнера */
+            width: 25%;
             height: auto;
             position: absolute;
             bottom: 10px;
@@ -121,24 +121,28 @@
             box-shadow: 0 0 20px rgba(255, 215, 0, 0.7);
             pointer-events: none;
         }
-        #greeting {
-            font-size: 6vw; /* Уменьшен размер шрифта */
+        /* Новый стиль для заголовка */
+        .header {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .header .ton-blockchain {
+            font-size: 3vw; /* Мелкий текст "TON Blockchain" */
+            color: #ffd700;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+            font-family: 'Roboto', sans-serif;
+            opacity: 0.8;
+        }
+        .header .main-title {
+            font-size: 6vw; /* Основной заголовок */
             font-family: 'Cinzel Decorative', cursive;
             color: #ffd700;
             text-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
-            margin-bottom: 5px; /* Уменьшен отступ */
             text-transform: uppercase;
-            text-align: center;
-            white-space: nowrap; /* Текст в одну строку */
+            line-height: 1.2; /* Уменьшаем межстрочный интервал */
         }
-        #subtitle {
-            font-size: 3vw; /* Уменьшен размер шрифта */
-            color: #ffd700;
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
-            margin-bottom: 10px; /* Уменьшен отступ */
-            text-align: center;
-            font-family: 'Roboto', sans-serif;
-            opacity: 0.9;
+        .header .main-title span {
+            display: block; /* Разделяем на две строки */
         }
         /* Анимация неонового свечения */
         @keyframes neon-glow {
@@ -185,7 +189,7 @@
         /* Анимация логотипов TON */
         .ton-logo {
             position: absolute;
-            width: 50px; /* Уменьшен размер логотипа */
+            width: 50px;
             height: 50px;
             opacity: 0.5;
             animation: rise 10s linear infinite;
@@ -197,18 +201,18 @@
         }
         /* Блок с выигрышами */
         #wins-container {
-            margin-top: 5px; /* Уменьшен отступ */
-            font-size: 3vw; /* Уменьшен размер шрифта */
+            margin-top: 5px;
+            font-size: 3vw;
             color: #ffd700;
             text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
             text-align: center;
             font-family: 'Roboto', sans-serif;
             opacity: 0.9;
-            height: 20px; /* Уменьшена высота */
+            height: 20px;
             overflow: hidden;
         }
         .win-message {
-            margin: 2px 0; /* Уменьшен отступ */
+            margin: 2px 0;
             animation: fadeIn 1s ease-in-out;
         }
         @keyframes fadeIn {
@@ -218,42 +222,47 @@
 
         /* Медиа-запросы для мобильных устройств */
         @media (max-width: 768px) {
-            #greeting {
-                font-size: 7vw; /* Уменьшен размер шрифта */
+            .header .ton-blockchain {
+                font-size: 4vw; /* Увеличиваем для мобильных */
             }
-            #subtitle {
-                font-size: 3.5vw; /* Уменьшен размер шрифта */
+            .header .main-title {
+                font-size: 7vw; /* Увеличиваем для мобильных */
             }
             .game-container {
-                width: 90%; /* Занимает 90% ширины экрана */
-                max-width: 250px; /* Уменьшена максимальная ширина */
+                width: 90%;
+                max-width: 250px;
             }
             button {
-                font-size: 4vw; /* Уменьшен размер кнопок */
+                font-size: 4vw;
                 padding: 6px 12px;
             }
             input {
-                width: 80%; /* Ширина поля ввода */
-                font-size: 3.5vw; /* Уменьшен размер шрифта */
+                width: 80%;
+                font-size: 3.5vw;
             }
             #wallet-info, #game-info {
-                font-size: 3.5vw; /* Уменьшен размер шрифта */
+                font-size: 3.5vw;
             }
         }
     </style>
 </head>
 <body>
-
     <div class="background-elements"></div>
 
-    <div id="greeting" class="neon-text">Crypto Rocket Casino</div>
-    <div id="subtitle">No deposits! Instant payouts to your wallet.<br>The world's first On-Chain casino.</div>
+    <!-- Новый заголовок -->
+    <div class="header">
+        <div class="ton-blockchain">TON Blockchain</div>
+        <div class="main-title neon-text">
+            <span>Crypto Rocket</span>
+            <span>Casino</span>
+        </div>
+    </div>
 
     <div id="ton-connect"></div>
 
     <input type="number" id="betAmount" placeholder="Bet (TON)" min="1" />
 
-    <div id="wins-container"></div> <!-- Контейнер для выигрышей -->
+    <div id="wins-container"></div>
 
     <button onclick="startGame();" class="play-button">Play</button>
 
