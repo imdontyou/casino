@@ -144,6 +144,14 @@
         .header .main-title span {
             display: block; /* Разделяем на две строки */
         }
+        .header .subtitle {
+            font-size: 3vw; /* Подзаголовок */
+            color: #ffd700;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+            font-family: 'Roboto', sans-serif;
+            opacity: 0.9;
+            margin-top: 5px; /* Отступ от заголовка */
+        }
         /* Анимация неонового свечения */
         @keyframes neon-glow {
             0%, 100% { opacity: 1; }
@@ -228,6 +236,9 @@
             .header .main-title {
                 font-size: 7vw; /* Увеличиваем для мобильных */
             }
+            .header .subtitle {
+                font-size: 4vw; /* Увеличиваем для мобильных */
+            }
             .game-container {
                 width: 90%;
                 max-width: 250px;
@@ -255,6 +266,10 @@
         <div class="main-title neon-text">
             <span>Crypto Rocket</span>
             <span>Casino</span>
+        </div>
+        <div class="subtitle">
+            No deposits! Instant payouts to your wallet.<br>
+            The world's first On-Chain casino.
         </div>
     </div>
 
