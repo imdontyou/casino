@@ -23,8 +23,6 @@
             background-image: url('casino-background.jpg');
             background-size: cover;
             background-position: center;
-            padding: 20px; /* Добавляем отступы для мобильных устройств */
-            box-sizing: border-box; /* Учитываем padding в ширине */
         }
         #ton-connect {
             margin-bottom: 20px;
@@ -41,7 +39,6 @@
             font-family: 'Cinzel Decorative', cursive;
             text-transform: uppercase;
             box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
-            margin: 10px 0; /* Добавляем отступы для кнопок */
         }
         button:hover {
             transform: scale(1.05);
@@ -56,7 +53,6 @@
             font-weight: bold;
             color: #ffd700;
             text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
-            text-align: center; /* Центрируем текст */
         }
         input {
             font-size: 16px;
@@ -71,9 +67,9 @@
             font-family: 'Roboto', sans-serif;
         }
         .game-container {
-            width: 90%; /* Уменьшаем ширину для мобильных устройств */
-            max-width: 300px; /* Ограничиваем максимальную ширину */
-            height: 300px;
+            width: 90%; /* Занимает 90% ширины экрана */
+            max-width: 300px; /* Максимальная ширина */
+            aspect-ratio: 1 / 1; /* Сохраняем пропорции 1:1 */
             position: relative;
             overflow: hidden;
             background-color: black;
@@ -86,8 +82,8 @@
             border: 2px solid #ffd700;
         }
         .rocket {
-            width: 90px;
-            height: 90px;
+            width: 25%; /* Размер ракеты относительно контейнера */
+            height: auto;
             position: absolute;
             bottom: 10px;
             left: 50%;
@@ -95,8 +91,8 @@
         }
         .falling-star {
             position: absolute;
-            width: 50px;
-            height: 50px;
+            width: 10%;
+            height: auto;
         }
         /* Декоративные элементы */
         .decorative-lights {
@@ -125,23 +121,23 @@
             pointer-events: none;
         }
         #greeting {
-            font-size: 36px; /* Уменьшаем размер шрифта для мобильных устройств */
+            font-size: 8vw; /* Адаптивный размер шрифта */
             font-family: 'Cinzel Decorative', cursive;
             color: #ffd700;
             text-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
             margin-bottom: 10px;
             text-transform: uppercase;
-            text-align: center; /* Центрируем текст */
+            text-align: center;
+            white-space: nowrap; /* Текст в одну строку */
         }
         #subtitle {
-            font-size: 14px; /* Уменьшаем размер шрифта для мобильных устройств */
+            font-size: 4vw; /* Адаптивный размер шрифта */
             color: #ffd700;
             text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
             margin-bottom: 20px;
             text-align: center;
             font-family: 'Roboto', sans-serif;
             opacity: 0.9;
-            padding: 0 10px; /* Добавляем отступы по бокам */
         }
         /* Анимация неонового свечения */
         @keyframes neon-glow {
@@ -188,20 +184,20 @@
         /* Анимация логотипов TON */
         .ton-logo {
             position: absolute;
-            width: 50px; /* Уменьшаем размер логотипов для мобильных устройств */
-            height: 50px;
+            width: 70px;
+            height: 70px;
             opacity: 0.5;
             animation: rise 10s linear infinite;
-            bottom: -50px;
+            bottom: -70px;
         }
         @keyframes rise {
             0% { transform: translateY(0); }
-            100% { transform: translateY(calc(-100vh - 50px)); }
+            100% { transform: translateY(calc(-100vh - 70px)); }
         }
         /* Блок с выигрышами */
         #wins-container {
             margin-top: 10px;
-            font-size: 16px; /* Уменьшаем размер шрифта для мобильных устройств */
+            font-size: 4vw; /* Адаптивный размер шрифта */
             color: #ffd700;
             text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
             text-align: center;
@@ -220,23 +216,27 @@
         }
 
         /* Медиа-запросы для мобильных устройств */
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
             #greeting {
-                font-size: 28px; /* Еще меньше размер шрифта для очень маленьких экранов */
+                font-size: 10vw; /* Увеличиваем шрифт для мобильных */
             }
             #subtitle {
-                font-size: 12px;
+                font-size: 5vw; /* Увеличиваем шрифт для мобильных */
             }
             .game-container {
-                height: 250px; /* Уменьшаем высоту игрового поля */
-            }
-            .rocket {
-                width: 70px; /* Уменьшаем размер ракеты */
-                height: 70px;
+                width: 90%; /* Занимает 90% ширины экрана */
+                max-width: 300px; /* Максимальная ширина */
             }
             button {
-                font-size: 20px; /* Уменьшаем размер шрифта кнопок */
-                padding: 8px 16px;
+                font-size: 5vw; /* Адаптивный размер кнопок */
+                padding: 10px 15px;
+            }
+            input {
+                width: 80%; /* Ширина поля ввода */
+                font-size: 4vw; /* Адаптивный размер шрифта */
+            }
+            #wallet-info, #game-info {
+                font-size: 4vw; /* Адаптивный размер шрифта */
             }
         }
     </style>
